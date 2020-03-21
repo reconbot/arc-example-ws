@@ -9,3 +9,4 @@ eventdown-game
 @http
 get /
 
+@static
