@@ -1,5 +1,5 @@
 @app
-test-ws
+eventdown-game
 
 @ws
 # no further config required
@@ -8,3 +8,4 @@ test-ws
 
 @http
 get /
+

@@ -7,27 +7,22 @@ let msg = document.getElementById('message')
 
 // setup the web socket
 let ws = new WebSocket(url)
-ws.onopen = open
-ws.onclose = close
-ws.onmessage = message
-ws.onerror = console.log
 
-// connect to the web socket
-function open() {
+ws.onopen = function open() {
   let ts = new Date(Date.now()).toISOString()
   main.innerHTML = `<p><b><code>${ts} - opened</code></b></p>`
 }
 
-// report a closed web socket connection
-function close() {
+ws.onclose = function close() {
   main.innerHTML = 'Closed <a href=/>reload</a>'
 }
 
-// write a message into main
-function message(e) {
+ws.onmessage = function message(e) {
   let msg = JSON.parse(e.data)
   main.innerHTML += `<p><code>${msg.text}</code></p>`
 }
+
+ws.onerror = console.log
 
 // sends messages to the lambda
 msg.addEventListener('keyup', function(e) {
