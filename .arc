@@ -10,3 +10,4 @@ eventdown-game
 get /
 
 @static
+fingerprint true
