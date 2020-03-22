@@ -1,5 +1,5 @@
-const arc = require('@architect/functions')
-const { makeLogger } = require('../../../lib/log')
+const { broadcast } = require('@architect/shared/broadcast')
+const { makeLogger } = require('@architect/shared/log')
 const log = makeLogger('ws/default')
 
 /**
@@ -7,16 +7,12 @@ const log = makeLogger('ws/default')
  */
 exports.handler = async (event) => {
   log({ event })
-  const data = await arc.tables()
 
-  let timestamp = new Date().toISOString()
-  let connectionId = event.requestContext.connectionId
-  let message = JSON.parse(event.body)
-  let text = `${timestamp} - ${connectionId} - ${message.text}`
+  const timestamp = new Date().toISOString()
+  const connectionId = event.requestContext.connectionId
+  const message = JSON.parse(event.body)
+  const text = `${timestamp} - ${connectionId} - ${message.text}`
 
-  const { Items: connections } = await data.connections.scan({})
-  await Promise.all(connections.map(({ connectionId }) => {
-    return arc.ws.send({ id: connectionId, payload: {text} })
-  }))
+  await broadcast({ text })
   return { statusCode: 200 }
 }

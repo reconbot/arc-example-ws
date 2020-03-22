@@ -1,5 +1,5 @@
-const { makeLogger } = require('../../../lib/log')
 const arc = require('@architect/functions')
+const { makeLogger } = require('@architect/shared/log')
 
 const log = makeLogger('ws/disconnect')
 /**
