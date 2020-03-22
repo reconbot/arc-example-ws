@@ -14,7 +14,7 @@ exports.handler = async function ws(event) {
   const timestamp = new Date().toISOString()
   const connectionId = event.requestContext.connectionId
   const data = await arc.tables()
-  const text = `${timestamp} - ${connectionId} - Disconnected`
+  const text = `${timestamp} - ${connectionId} - Connected`
   await broadcast({ text })
   await data.connections.put({ connectionId, createdAt: Date.now() })
   return { statusCode: 200 }

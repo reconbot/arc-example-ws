@@ -5,7 +5,8 @@
 module.exports = function getWS() {
   let env = process.env.NODE_ENV
   let testing = 'ws://localhost:3333'
-  let staging = 'wss://eventdown-staging-ws.rbrtr.com'
+  // let staging = 'wss://eventdown-staging-ws.rbrtr.com'
+  let staging = 'wss://45sgi23a11.execute-api.us-west-2.amazonaws.com/staging'
   let production = 'fixme: these urls are printed after create'
   if (env === 'testing')
     return testing
