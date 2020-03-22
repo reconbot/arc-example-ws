@@ -2,9 +2,6 @@
 eventdown-game
 
 @ws
-# no further config required
-# client code is in /public
-# serverless code is in /src/ws/*
 
 @http
 get /
@@ -15,6 +12,4 @@ fingerprint true
 @tables
 connections
   connectionId *String
-  insert Lambda
-  update Lambda
-  delete Lambda
+#  stream true
