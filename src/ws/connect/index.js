@@ -1,4 +1,5 @@
 const arc = require('@architect/functions')
+const { broadcast } = require('@architect/shared/broadcast')
 const { makeLogger } = require('@architect/shared/log')
 
 const log = makeLogger('ws/connect')
@@ -9,9 +10,12 @@ const log = makeLogger('ws/connect')
  * - event.requestContext.connectionId for the connectionId
  */
 exports.handler = async function ws(event) {
-  log({event})
+  log({ event })
+  const timestamp = new Date().toISOString()
   const connectionId = event.requestContext.connectionId
   const data = await arc.tables()
-  await data.connections.put({connectionId, createdAt: Date.now() })
-  return {statusCode: 200}
+  const text = `${timestamp} - ${connectionId} - Disconnected`
+  await broadcast({ text })
+  await data.connections.put({ connectionId, createdAt: Date.now() })
+  return { statusCode: 200 }
 }
