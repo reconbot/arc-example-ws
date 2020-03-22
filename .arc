@@ -12,9 +12,6 @@ get /
 @static
 fingerprint true
 
-@aws
-runtime nodejs12.x
-
 @tables
 connections
   connectionId *String
