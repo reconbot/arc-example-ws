@@ -1,6 +1,6 @@
-let arc = require('@architect/functions')
-let static = arc.http.helpers.static
-let getURL = require('./get-web-socket-url')
+const arc = require('@architect/functions')
+const static = arc.http.helpers.static
+const getURL = require('../../../lib/get-web-socket-url')
 
 /**
  * renders the html app chrome
