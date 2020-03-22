@@ -18,4 +18,6 @@ runtime nodejs12.x
 @tables
 connections
   connectionId *String
-  # createdAt Number
+  insert Lambda
+  update Lambda
+  delete Lambda
